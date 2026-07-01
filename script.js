@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
+import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyA59VR8qcls0kz0caFSr9XX8QUaLMftzDY",
@@ -12,23 +12,34 @@ const firebaseConfig = {
   measurementId: "G-ERCP0XWBCX"
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
+const db = getDatabase(initializeApp(firebaseConfig));
 
-onValue(ref(db, 'profile/sejarah'), (snapshot) => {
-    const data = snapshot.val();
-    if(data) document.getElementById('sejarah-container').innerHTML = `
-        <div class="sejarah-card">
-            <img src="${data.foto}" class="img-thumb">
-            <div><h3>${data.judul}</h3><p>${data.deskripsi}</p></div>
-        </div>`;
-});
+// Animasi Loading
+let w = 0;
+const int = setInterval(() => {
+    w++; document.getElementById('progress').style.width = w + '%';
+    if(w >= 100) { clearInterval(int); document.getElementById('loader').style.display = 'none'; }
+}, 20);
 
-onValue(ref(db, 'profile/guru'), (snapshot) => {
-    const data = snapshot.val();
-    if(data) document.getElementById('guru-container').innerHTML = Object.values(data).map(item => `
-        <div class="profil-card">
-            <img src="${item.foto}" class="img-thumb" style="border-radius: 50%">
-            <div><h3>${item.nama}</h3><p>${item.jabatan}</p></div>
-        </div>`).join('');
+// Admin Functions
+window.showAdmin = () => document.getElementById('admin-panel').style.display = 'block';
+window.closeAdmin = () => document.getElementById('admin-panel').style.display = 'none';
+window.login = () => {
+    if(document.getElementById('pass').value === "SDNSATUSUGUNG#26") {
+        document.getElementById('login-form').style.display = 'none';
+        document.getElementById('admin-form').style.display = 'block';
+    } else alert("Password Salah!");
+};
+
+window.saveData = () => {
+    const judul = document.getElementById('judul').value;
+    const desk = document.getElementById('desk').value;
+    set(ref(db, 'profile/sejarah'), { judul, deskripsi: desk });
+    alert("Data Tersimpan!");
+};
+
+// Fetch Data
+onValue(ref(db, 'profile/sejarah'), (s) => {
+    const d = s.val();
+    if(d) document.getElementById('sejarah-container').innerHTML = `<div class="profil-card"><h3>${d.judul}</h3><p>${d.deskripsi}</p></div>`;
 });
