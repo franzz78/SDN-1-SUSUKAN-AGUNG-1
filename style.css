@@ -8,20 +8,18 @@ body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-
 
 /* Navbar Merah Solid */
 .navbar { 
-    padding: 20px 50px; 
+    padding: 15px 50px; 
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
-    background-color: #e74c3c; /* Background Merah */
+    background-color: #e74c3c; 
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
-.logo-white { 
-    color: #ffffff; /* Tulisan tetap Putih */
-    font-size: 1.5rem; 
-    font-weight: 800; 
-    text-transform: uppercase; 
-    letter-spacing: 1px; 
-}
+
+.logo-container { display: flex; align-items: center; gap: 15px; }
+.logo-img { height: 45px; width: auto; }
+.logo-white { color: #ffffff; font-size: 1.2rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+
 .nav-links { list-style: none; display: flex; gap: 25px; color: white; font-weight: bold; font-size: 0.9rem; }
 .nav-links li { cursor: pointer; transition: 0.3s; }
 .nav-links li:hover { color: #f1c40f; }
@@ -41,7 +39,7 @@ body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-
 
 /* Responsif untuk Potret & Landscape */
 @media (max-width: 768px) {
-    .navbar { padding: 20px; flex-direction: column; gap: 15px; }
+    .navbar { padding: 15px; flex-direction: column; gap: 15px; }
     .nav-links { gap: 15px; }
     .hero-content h1 { font-size: 1.8rem; }
 }
