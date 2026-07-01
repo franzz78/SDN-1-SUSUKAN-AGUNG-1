@@ -1,0 +1,16 @@
+{
+  "name": "SDN 1 SUSUKAN AGUNG",
+  "short_name": "SDN1SA",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#27ae60",
+  "icons": [
+    {
+      "src": "1000164787.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    }
+  ]
+}
+
