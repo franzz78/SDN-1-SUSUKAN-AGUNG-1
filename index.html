@@ -3,47 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SDN 1 SUSUKAN AGUNG - KABUPATEN CIREBON</title>
-    <link rel="manifest" href="manifest.json">
+    <title>SDN 1 SUSUKAN AGUNG</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="hero">
-        <img src="https://lypwzfgzfaxpuhezirjh.supabase.co/storage/v1/object/sign/Files/images%20(10).jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9kZDQ2MGFjMC1jY2MxLTQ4NDEtODNhOS01NWE3OWMxYmNhZTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJGaWxlcy9pbWFnZXMgKDEwKS5qcGVnIiwic2NvcGUiOiJkb3dubG9hZCIsImlhdCI6MTc4Mjg4NTkxNCwiZXhwIjoxODE0NDIxOTE0fQ.Jq5LPOTRhiyOWOC-ql5ef1xr2S91zmelc78QPyC7yC0" alt="Background Sekolah" class="bg-img">
+    <div id="loader">
+        <div class="loader-content">
+            <img src="https://lypwzfgzfaxpuhezirjh.supabase.co/storage/v1/object/sign/Files/1000164800-removebg-preview.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9kZDQ2MGFjMC1jY2MxLTQ4NDEtODNhOS01NWE3OWMxYmNhZTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJGaWxlcy8xMDAwMTY0ODAwLXJlbW92ZWJnLXByZXZpZXcucG5nIiwic2NvcGUiOiJkb3dubG9hZCIsImlhdCI6MTc4Mjg4Njk0NCwiZXhwIjoxODE0NDIyOTQ0fQ.iSvKeaZ8KU7D28KXeMo_OsumbpPwuSGkIWpn_zCMsa4" alt="Logo" style="width:100px;">
+            <h2>WELCOME TO WEBSITE</h2>
+            <h3>SDN 1 SUSUKAN AGUNG</h3>
+            <p>DI KELOLA OLEH OPERATOR SEKOLAH</p>
+            <div class="progress-bar"><div id="progress"></div></div>
+        </div>
+    </div>
+
+    <header class="hero" style="background: url('https://lypwzfgzfaxpuhezirjh.supabase.co/storage/v1/object/sign/Files/images%20(10).jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9kZDQ2MGFjMC1jY2MxLTQ4NDEtODNhOS01NWE3OWMxYmNhZTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJGaWxlcy9pbWFnZXMgKDEwKS5qcGVnIiwic2NvcGUiOiJkb3dubG9hZCIsImlhdCI6MTc4Mjg4Njg5MCwiZXhwIjoxODE0NDIyODkwfQ.jT4xSA8N9fmVq9WVIUapVePrHUHZvivhx3cTKhiTfUg') center/cover;">
         <nav class="navbar">
-            <div class="logo-container">
-                <img src="https://lypwzfgzfaxpuhezirjh.supabase.co/storage/v1/object/sign/Files/1000164800-removebg-preview.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9kZDQ2MGFjMC1jY2MxLTQ4NDEtODNhOS01NWE3OWMxYmNhZTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJGaWxlcy8xMDAwMTY0ODAwLXJlbW92ZWJnLXByZXZpZXcucG5nIiwic2NvcGUiOiJkb3dubG9hZCIsImlhdCI6MTc4Mjg4NTgyOCwiZXhwIjoxODE0NDIxODI4fQ.9J3xHNZIUBFyaF47qyJgZ8luf0igvZiK0lLbI6MTkqI" class="logo-img">
-                <span class="logo-white">SDN 1 SUSUKAN AGUNG</span>
-            </div>
-            <ul class="nav-links">
-                <li>HOME</li><li>PROFIL</li><li>BERITA</li><li>KONTAK</li>
+            <div class="logo-white">SDN 1 SUSUKAN AGUNG</div>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+            <ul class="nav-links" id="nav-links">
+                <li>HOME</li><li>PROFIL</li><li>BERITA</li><li onclick="showAdmin()">ADMIN</li>
             </ul>
         </nav>
-        <div class="hero-content">
-            <h1>Selamat Datang di Website SDN 1 SUSUKAN AGUNG</h1>
-            <div class="search-box">
-                <input type="text" placeholder="Cari informasi sekolah...">
-                <button>Cari</button>
-            </div>
-        </div>
     </header>
 
+    <div id="admin-panel" class="modal">
+        <div class="modal-content">
+            <span onclick="closeAdmin()">×</span>
+            <div id="login-form">
+                <h3>Login Admin</h3>
+                <input type="password" id="pass" placeholder="Password...">
+                <button onclick="login()">Masuk</button>
+            </div>
+            <div id="admin-form" style="display:none">
+                <h3>Kelola Konten</h3>
+                <input type="text" id="judul" placeholder="Judul Sejarah">
+                <textarea id="desk" placeholder="Deskripsi..."></textarea>
+                <button onclick="saveData()">Simpan Data</button>
+            </div>
+        </div>
+    </div>
+
     <main class="content-section">
-        <section id="profil-sekolah">
-            <h2>PROFIL SEKOLAH</h2>
-            <div id="sejarah-container"></div>
-        </section>
-        <section id="profil-guru">
-            <h2 style="margin-top: 40px;">PROFILE GURU / KEPSEK</h2>
-            <div id="guru-container" class="grid-container"></div>
-        </section>
+        <div id="sejarah-container"></div>
+        <div id="guru-container" class="grid-container"></div>
     </main>
 
     <footer class="footer">
-        <p>&copy; 2026 SDN 1 SUSUKAN AGUNG - KABUPATEN CIREBON. All Rights Reserved.</p>
-        <p>Dikembangkan oleh Operator Sekolah</p>
+        <p>&copy; 2026 SDN 1 SUSUKAN AGUNG - KABUPATEN CIREBON</p>
     </footer>
 
     <script type="module" src="script.js"></script>
+    <script>
+        function toggleMenu() { document.getElementById('nav-links').classList.toggle('active'); }
+        function showAdmin() { document.getElementById('admin-panel').style.display = 'flex'; }
+        function closeAdmin() { document.getElementById('admin-panel').style.display = 'none'; }
+    </script>
 </body>
 </html>
