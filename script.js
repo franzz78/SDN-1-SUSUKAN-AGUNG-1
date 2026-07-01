@@ -15,7 +15,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-// Data Sejarah Real-time
 onValue(ref(db, 'profile/sejarah'), (snapshot) => {
     const data = snapshot.val();
     if(data) document.getElementById('sejarah-container').innerHTML = `
@@ -25,7 +24,6 @@ onValue(ref(db, 'profile/sejarah'), (snapshot) => {
         </div>`;
 });
 
-// Data Guru Real-time
 onValue(ref(db, 'profile/guru'), (snapshot) => {
     const data = snapshot.val();
     if(data) document.getElementById('guru-container').innerHTML = Object.values(data).map(item => `
