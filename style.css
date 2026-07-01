@@ -1,69 +1,45 @@
-/* =========================================
-   STYLE.CSS LENGKAP - SDN 1 SUSUKAN AGUNG
-   ========================================= */
+/* ========================================================
+   CSS LENGKAP - SDN 1 SUSUKAN AGUNG
+   ======================================================== */
 
-/* Reset Dasar */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f4; color: #333; line-height: 1.6; }
 
-/* Hero Section */
-.hero { height: 100vh; position: relative; display: flex; flex-direction: column; overflow: hidden; }
-.bg-img { position: absolute; width: 100%; height: 100%; object-fit: cover; z-index: -1; filter: brightness(0.5); }
+/* 1. ANIMASI LOADING SCREEN */
+#loader { position: fixed; inset: 0; background: #e74c3c; z-index: 9999; display: flex; align-items: center; justify-content: center; flex-direction: column; transition: opacity 0.5s ease; }
+.loader-content { text-align: center; color: white; padding: 20px; }
+.progress-bar { width: 250px; height: 8px; background: rgba(255,255,255,0.3); margin-top: 20px; border-radius: 10px; overflow: hidden; }
+#progress { width: 0%; height: 100%; background: #f1c40f; transition: width 0.1s; }
 
-/* Navbar Merah */
-.navbar { 
-    padding: 15px 50px; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    background-color: #e74c3c; 
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
-}
-.logo-container { display: flex; align-items: center; gap: 15px; }
-.logo-img { height: 45px; width: auto; }
-.logo-white { color: #ffffff; font-size: 1.2rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
-
-.nav-links { list-style: none; display: flex; gap: 25px; color: white; font-weight: bold; font-size: 0.9rem; }
-.nav-links li { cursor: pointer; transition: 0.3s; }
+/* 2. NAVBAR & NAVIGATION */
+.navbar { padding: 15px 50px; background: #e74c3c; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 3px 10px rgba(0,0,0,0.2); position: sticky; top: 0; z-index: 100; }
+.logo-white { color: white; font-size: 1.5rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
+.nav-links { display: flex; gap: 30px; list-style: none; }
+.nav-links li { color: white; font-weight: 600; cursor: pointer; transition: 0.3s; }
 .nav-links li:hover { color: #f1c40f; }
+.hamburger { display: none; cursor: pointer; color: white; font-size: 30px; }
 
-/* Hero Content */
-.hero-content { margin: auto; text-align: center; color: white; width: 90%; max-width: 600px; padding: 20px; }
-.hero-content h1 { margin-bottom: 25px; font-size: 2.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+/* 3. MODAL ADMIN PANEL */
+.modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 1000; padding: 20px; align-items: center; justify-content: center; }
+.modal-content { background: white; padding: 30px; width: 100%; max-width: 450px; border-radius: 15px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+.modal-content span { position: absolute; top: 10px; right: 20px; cursor: pointer; font-size: 24px; font-weight: bold; }
+input, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; }
+button { width: 100%; padding: 12px; background: #e74c3c; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 10px; }
 
-.search-box { background: white; padding: 5px; border-radius: 50px; display: flex; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-.search-box input { flex: 1; padding: 15px 25px; border: none; border-radius: 50px; outline: none; font-size: 1rem; }
-.search-box button { background: #e74c3c; color: white; border: none; padding: 12px 35px; border-radius: 50px; cursor: pointer; font-weight: bold; transition: 0.3s; }
-.search-box button:hover { background: #c0392b; }
+/* 4. CONTENT SECTION & GRID */
+.content-section { padding: 60px 20px; max-width: 1000px; margin: auto; }
+.grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 30px; }
+.profil-card { background: white; padding: 25px; border-radius: 15px; border-left: 6px solid #e74c3c; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; }
+.profil-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+h2 { color: #c0392b; margin-bottom: 20px; text-transform: uppercase; border-bottom: 2px solid #c0392b; display: inline-block; }
 
-/* Content Section (Profil & Guru) */
-.content-section { padding: 50px 20px; max-width: 900px; margin: auto; }
-.content-section h2 { margin-bottom: 25px; color: #e74c3c; border-left: 5px solid #e74c3c; padding-left: 15px; }
+/* 5. FOOTER */
+.footer { background: #2c3e50; color: #ecf0f1; text-align: center; padding: 40px; margin-top: 80px; font-size: 0.9rem; }
 
-.grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-
-.profil-card, .sejarah-card { 
-    background: white; padding: 20px; border-radius: 12px; 
-    display: flex; align-items: center; gap: 20px; 
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
-}
-.sejarah-card { display: flex; align-items: flex-start; }
-.img-thumb { width: 100px; height: 100px; object-fit: cover; border-radius: 8px; }
-
-/* Footer */
-.footer { 
-    background-color: #333; 
-    color: #ffffff; 
-    text-align: center; 
-    padding: 30px 20px; 
-    margin-top: 50px; 
-    border-top: 5px solid #e74c3c; 
-    font-size: 0.9rem; 
-}
-
-/* Responsif */
+/* 6. RESPONSIVE MOBILE */
 @media (max-width: 768px) {
-    .navbar { padding: 15px; flex-direction: column; gap: 15px; }
-    .nav-links { gap: 15px; }
-    .hero-content h1 { font-size: 1.8rem; }
+    .hamburger { display: block; }
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; right: 0; background: #e74c3c; width: 100%; padding: 20px; text-align: center; }
+    .nav-links.active { display: flex; }
+    .navbar { padding: 15px 20px; }
 }
