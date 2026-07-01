@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div id="loader">
         <div class="loader-content">
-            <img src="https://lypwzfgzfaxpuhezirjh.supabase.co/storage/v1/object/sign/Files/1000164800-removebg-preview.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9kZDQ2MGFjMC1jY2MxLTQ4NDEtODNhOS01NWE3OWMxYmNhZTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJGaWxlcy8xMDAwMTY0ODAwLXJlbW92ZWJnLXByZXZpZXcucG5nIiwic2NvcGUiOiJkb3dubG9hZCIsImlhdCI6MTc4Mjg4Njk0NCwiZXhwIjoxODE0NDIyOTQ0fQ.iSvKeaZ8KU7D28KXeMo_OsumbpPwuSGkIWpn_zCMsa4" alt="Logo" style="width:100px;">
+            <img src="https://lypwzfgzfaxpuhezirjh.supabase.co/storage/v1/object/sign/Files/1000164800-removebg-preview.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9kZDQ2MGFjMC1jY2MxLTQ4NDEtODNhOS01NWE3OWMxYmNhZTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJGaWxlcy8xMDAwMTY0ODAwLXJlbW92ZWJnLXByZXZpZXcucG5nIiwic2NvcGUiOiJkb3dubG9hZCIsImlhdCI6MTc4Mjg4NzI0NSwiZXhwIjoxODE0NDIzMjQ1fQ.QVZF1yb6nah_jA_ckuYCMA8NF-M72klM-dnIFYuXqjs" class="logo-loader" alt="Logo">
             <h2>WELCOME TO WEBSITE</h2>
             <h3>SDN 1 SUSUKAN AGUNG</h3>
             <p>DI KELOLA OLEH OPERATOR SEKOLAH</p>
@@ -17,12 +18,15 @@
         </div>
     </div>
 
-    <header class="hero" style="background: url('https://lypwzfgzfaxpuhezirjh.supabase.co/storage/v1/object/sign/Files/images%20(10).jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9kZDQ2MGFjMC1jY2MxLTQ4NDEtODNhOS01NWE3OWMxYmNhZTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJGaWxlcy9pbWFnZXMgKDEwKS5qcGVnIiwic2NvcGUiOiJkb3dubG9hZCIsImlhdCI6MTc4Mjg4Njg5MCwiZXhwIjoxODE0NDIyODkwfQ.jT4xSA8N9fmVq9WVIUapVePrHUHZvivhx3cTKhiTfUg') center/cover;">
+    <header class="hero">
         <nav class="navbar">
             <div class="logo-white">SDN 1 SUSUKAN AGUNG</div>
             <div class="hamburger" onclick="toggleMenu()">☰</div>
             <ul class="nav-links" id="nav-links">
-                <li>HOME</li><li>PROFIL</li><li>BERITA</li><li onclick="showAdmin()">ADMIN</li>
+                <li>HOME</li>
+                <li>PROFIL</li>
+                <li>BERITA</li>
+                <li onclick="showAdmin()">ADMIN</li>
             </ul>
         </nav>
     </header>
@@ -32,7 +36,7 @@
             <span onclick="closeAdmin()">×</span>
             <div id="login-form">
                 <h3>Login Admin</h3>
-                <input type="password" id="pass" placeholder="Password...">
+                <input type="password" id="pass" placeholder="Masukkan Password...">
                 <button onclick="login()">Masuk</button>
             </div>
             <div id="admin-form" style="display:none">
@@ -53,11 +57,25 @@
         <p>&copy; 2026 SDN 1 SUSUKAN AGUNG - KABUPATEN CIREBON</p>
     </footer>
 
-    <script type="module" src="script.js"></script>
     <script>
+        // Animasi Loading
+        let width = 0;
+        const bar = document.getElementById('progress');
+        const interval = setInterval(() => {
+            width++; bar.style.width = width + '%';
+            if (width >= 100) { 
+                clearInterval(interval); 
+                document.getElementById('loader').style.opacity = '0'; 
+                setTimeout(() => document.getElementById('loader').style.display = 'none', 800); 
+            }
+        }, 30);
+
+        // Fungsi Menu
         function toggleMenu() { document.getElementById('nav-links').classList.toggle('active'); }
         function showAdmin() { document.getElementById('admin-panel').style.display = 'flex'; }
         function closeAdmin() { document.getElementById('admin-panel').style.display = 'none'; }
     </script>
+    
+    <script type="module" src="script.js"></script>
 </body>
 </html>
