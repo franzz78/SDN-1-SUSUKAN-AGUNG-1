@@ -1,6 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
 import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-analytics.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyA59VR8qcls0kz0caFSr9XX8QUaLMftzDY",
@@ -15,21 +14,23 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-const analytics = getAnalytics(app);
 
-// Mengambil dan menampilkan data real-time
-onValue(ref(db, 'info_sekolah'), (snapshot) => {
+// Data Sejarah Real-time
+onValue(ref(db, 'profile/sejarah'), (snapshot) => {
     const data = snapshot.val();
-    const list = document.getElementById('content-list');
-    
-    if (data) {
-        list.innerHTML = Object.values(data).map(item => `
-            <div class="card">
-                <h3>${item.judul}</h3>
-                <p>${item.deskripsi}</p>
-            </div>
-        `).join('');
-    } else {
-        list.innerHTML = "<p>Data belum tersedia di database.</p>";
-    }
+    if(data) document.getElementById('sejarah-container').innerHTML = `
+        <div class="sejarah-card">
+            <img src="${data.foto}" class="img-thumb">
+            <div><h3>${data.judul}</h3><p>${data.deskripsi}</p></div>
+        </div>`;
+});
+
+// Data Guru Real-time
+onValue(ref(db, 'profile/guru'), (snapshot) => {
+    const data = snapshot.val();
+    if(data) document.getElementById('guru-container').innerHTML = Object.values(data).map(item => `
+        <div class="profil-card">
+            <img src="${item.foto}" class="img-thumb" style="border-radius: 50%">
+            <div><h3>${item.nama}</h3><p>${item.jabatan}</p></div>
+        </div>`).join('');
 });
